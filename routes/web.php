@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ConversionController;
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\RateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('currencies', [CurrencyController::class, 'index'])->name('currencies.index');
+Route::get('rates/{fromRate}', [RateController::class, 'show'])->name('rates.show');
+Route::post('convert', ConversionController::class)->name('convert');
