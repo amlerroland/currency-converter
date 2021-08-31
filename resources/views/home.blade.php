@@ -34,6 +34,13 @@
                         <form action="/convert" method="POST" id="form" @submit.prevent="submit">
                             @csrf
                             <div class="flex flex-col mb-4">
+                                <label for="value" class="font-bold mb-2">Value</label>
+                                <input type="number" name="fromValue" class="text-gray-800 p-2 rounded" value="1" required v-model.number="form.fromValue">
+                                <div v-if="errors.fromValue.length" class="text-red-500 mt-2">
+                                    <span v-for="(error, index) in errors.fromValue" :key="index" v-text="error"></span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col mb-4">
                                 <label for="from" class="font-bold mb-2">From</label>
                                 <select name="from" id="from" class="text-gray-800 p-2 rounded" required v-model="form.from">
                                     <option value="" disabled selected>Choose a from currency</option>
@@ -57,13 +64,6 @@
                                 </select>
                                 <div v-if="errors.to.length" class="text-red-500 mt-2">
                                     <span v-for="(error, index) in errors.to" :key="index" v-text="error"></span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col mb-4">
-                                <label for="value" class="font-bold mb-2">Value</label>
-                                <input type="number" name="fromValue" class="text-gray-800 p-2 rounded" value="1" required v-model.number="form.fromValue">
-                                <div v-if="errors.fromValue.length" class="text-red-500 mt-2">
-                                    <span v-for="(error, index) in errors.fromValue" :key="index" v-text="error"></span>
                                 </div>
                             </div>
                             <div class="flex justify-center mb-4" v-if="convertedValue">

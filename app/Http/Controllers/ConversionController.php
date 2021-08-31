@@ -32,7 +32,7 @@ class ConversionController extends Controller
 
         $result = $service->convert($request->from, $request->to, $request->fromValue);
 
-        // Just so we can see something on the page since the only working api doesnt allow conversions on the free plan
+        // Just so we can see something on the page since one of the apis free plan doesnt allow conversions
         if (is_null($result)) {
             $result = rand(250, 300) * $request->fromValue;
         }
